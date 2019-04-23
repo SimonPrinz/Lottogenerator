@@ -11,40 +11,17 @@
 #ifndef main_hpp
 #define main_hpp
 
-// cout and cin
-#include <iostream>
-// Draw class
+#include "Generator.hpp"
 #include "Draw.hpp"
+#include "tools.hpp"
+#include <regex>
 
-/**
- * Main method.
- *
- * @return status code of the program
- */
+namespace tools = me::simonprinz::tools;
+
 int main();
 
-#pragma region Helpers
+bool parse(Generator &gen, std::string line);
 
-/**
- * prints the text to the screen
- */
-void print(std::string text);
-
-/**
- * prints a line break
- */
-void println();
-
-/**
- * prints the text and a line break to the screen
- */
-void println(std::string text);
-
-/**
- * Pauses the console and waits for the user to press a key.
- */
-void pause();
-
-#pragma endregion /* Helpers */
+void generateAndPrintTickets(Generator gen);
 
 #endif /* main_hpp */

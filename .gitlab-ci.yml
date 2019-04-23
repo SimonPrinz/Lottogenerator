@@ -7,7 +7,7 @@ build:
   stage: build
   script:
   - cd Lottogenerator/
-  - g++ main.cpp -Wall -Wextra -O2 -I src main.hpp Draw.hpp Draw.cpp random.hpp random.cpp -pthread -o ../main.exe
+  - g++ main.cpp -Wall -Wextra -O2 -I src main.hpp Draw.hpp Draw.cpp random.hpp random.cpp tools.hpp toools.cpp Generator.hpp Generator.cpp -pthread -o ../main.exe
   artifacts:
     paths:
     - main.exe

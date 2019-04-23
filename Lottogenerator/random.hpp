@@ -16,13 +16,22 @@
 // exceptions
 #include <stdexcept>
 
-/**
- * Generates a random number between min and max (both including)
- *
- * @param min minimum number (incl.)
- * @param max maximum number (incl.)
- * @return a random number between both parameters (incl.)
- */
-int generateRandomInt(int min, int max);
+namespace me
+{
+    namespace simonprinz
+    {
+        namespace random
+        {
+            /**
+             * Generates a random number between min and max (both including)
+             *
+             * @param min minimum number (incl.)
+             * @param max maximum number (incl.)
+             * @return a random number between both parameters (incl.)
+             */
+            int generateRandomInt(const int min, const int max);
+        }
+    }
+}
 
 #endif /* random_hpp */

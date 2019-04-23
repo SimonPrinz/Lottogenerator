@@ -47,7 +47,7 @@ public:
      * @param index array index
      * @return number at position index
      */
-    inline SINT getNumber(int index) const
+    inline SINT getNumber(const int index) const
     {
         // if the index is smaller than 0 or greater than the length,
         // we throw an out of range exception at this point

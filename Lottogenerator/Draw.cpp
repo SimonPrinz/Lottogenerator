@@ -10,6 +10,8 @@
 
 #include "Draw.hpp"
 
+namespace rnd = me::simonprinz::random;
+
 void Draw::generateRandom()
 {
     // iterate through the whole length of the array
@@ -28,7 +30,7 @@ void Draw::generateRandom()
         {
             // generate a new number and set valid to true,
             // until someone says it's not
-            number = generateRandomInt(1, 49);
+            number = rnd::generateRandomInt(1, 49);
             valid = true;
             
             // iterate through the part of the array we already filled with values
@@ -44,7 +46,7 @@ void Draw::generateRandom()
         this->numbers[i] = number;
     }
     // generate the supernumber
-    this->supernumber = generateRandomInt(0, 9);
+    this->supernumber = rnd::generateRandomInt(0, 9);
     
     // sort the numbers to be ascending
     this->sortNumbers();
