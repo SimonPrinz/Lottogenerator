@@ -8,6 +8,7 @@ build:
   script:
   - cd Lottogenerator/
   - g++ main.cpp -I src main.hpp Draw.hpp Draw.cpp random.hpp random.cpp -pthread -o main.exe
+  - ls -al
   artifacts:
     paths:
     - main.exe
