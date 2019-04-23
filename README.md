@@ -1,0 +1,1 @@
+# Lottogenerator [![pipeline status](https://ppgit.de/SiPri1000/Schule-Lottogenerator/badges/master/pipeline.svg)](https://ppgit.de/SiPri1000/Schule-Lottogenerator/commits/master)
