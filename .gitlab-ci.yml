@@ -6,6 +6,7 @@ stages:
 build:
   stage: build
   script:
+  - cd Lottogenerator/
   - g++ main.cpp -I src main.hpp Draw.hpp Draw.cpp random.hpp random.cpp -pthread -o main
   artifacts:
     paths:
