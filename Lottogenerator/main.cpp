@@ -11,29 +11,52 @@
 // include header file
 #include "main.hpp"
 
-/**
- * Main method.
- *
- * @return status code of the program
- */
-int main() {
-    
-#pragma region Test
-    Draw d;
-    d.generateRandom();
-    for (int i = 0; i < d.length(); i++) {
-        std::cout << d.getNumber(i) << "\t";
+int main()
+{
+    // program should only exit if
+    // the users tells it to and sets the variable to true
+    bool shouldExit = false;
+    while (!shouldExit)
+    {
+        shouldExit = true;
     }
-    std::cout << d.getSuperNumber();
-#pragma endregion /* Test */
     
-    //pause();
+    pause();
     
     // tell the calling process, everything's fine
     return EXIT_SUCCESS;
 }
 
-void pause() {
-    std::cout << "Press enter to continue...";
+#pragma region Helpers
+
+void print(std::string text)
+{
+    // print the text
+    std::cout << text;
+}
+
+void println()
+{
+    // print the line break
+    std::cout << std::endl;
+}
+
+void println(std::string text)
+{
+    // print the text followed by a line break
+    print(text);
+    println();
+}
+
+void pause()
+{
+    // tell the user, that we are waiting for him
+    print("Press enter to continue...");
+    
+    // Note: getchar() is a better solution than the most often used system("pause")
+    //       it basically does the same thing; but instead of executing the provided command
+    //       at the systems terminal, it waits for the user to press the enter key
     getchar();
 }
+
+#pragma endregion /* Helpers */

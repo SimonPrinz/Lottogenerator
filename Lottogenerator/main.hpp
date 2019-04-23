@@ -17,8 +17,34 @@
 #include "Draw.hpp"
 
 /**
+ * Main method.
+ *
+ * @return status code of the program
+ */
+int main();
+
+#pragma region Helpers
+
+/**
+ * prints the text to the screen
+ */
+void print(std::string text);
+
+/**
+ * prints a line break
+ */
+void println();
+
+/**
+ * prints the text and a line break to the screen
+ */
+void println(std::string text);
+
+/**
  * Pauses the console and waits for the user to press a key.
  */
 void pause();
+
+#pragma endregion /* Helpers */
 
 #endif /* main_hpp */
