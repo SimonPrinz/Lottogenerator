@@ -32,6 +32,8 @@
 		5D2914D8226F584E00ACC44F /* random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = random.hpp; sourceTree = "<group>"; };
 		5D2914DA226F597B00ACC44F /* Draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
 		5D2914DB226F597B00ACC44F /* Draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
+		5DAD09C6226F779100D1E93B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5DAD09C7226F77A000D1E93B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,8 @@
 		5D2914BB226F33F200ACC44F = {
 			isa = PBXGroup;
 			children = (
+				5DAD09C7226F77A000D1E93B /* README.md */,
+				5DAD09C6226F779100D1E93B /* LICENSE */,
 				5D2914C6226F33F200ACC44F /* Lottogenerator */,
 				5D2914C5226F33F200ACC44F /* Products */,
 			);
