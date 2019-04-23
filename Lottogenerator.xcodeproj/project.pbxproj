@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D2914C8226F33F200ACC44F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D2914C7226F33F200ACC44F /* main.cpp */; };
+		5D2914D6226F35B000ACC44F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D2914D4226F35B000ACC44F /* main.cpp */; };
+		5D2914D9226F584E00ACC44F /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D2914D7226F584E00ACC44F /* random.cpp */; };
+		5D2914DC226F597B00ACC44F /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D2914DA226F597B00ACC44F /* Draw.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +26,12 @@
 
 /* Begin PBXFileReference section */
 		5D2914C4226F33F200ACC44F /* Lottogenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lottogenerator; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D2914C7226F33F200ACC44F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5D2914D4226F35B000ACC44F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5D2914D5226F35B000ACC44F /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
+		5D2914D7226F584E00ACC44F /* random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
+		5D2914D8226F584E00ACC44F /* random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = random.hpp; sourceTree = "<group>"; };
+		5D2914DA226F597B00ACC44F /* Draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
+		5D2914DB226F597B00ACC44F /* Draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +64,12 @@
 		5D2914C6226F33F200ACC44F /* Lottogenerator */ = {
 			isa = PBXGroup;
 			children = (
-				5D2914C7226F33F200ACC44F /* main.cpp */,
+				5D2914D4226F35B000ACC44F /* main.cpp */,
+				5D2914D5226F35B000ACC44F /* main.hpp */,
+				5D2914D7226F584E00ACC44F /* random.cpp */,
+				5D2914D8226F584E00ACC44F /* random.hpp */,
+				5D2914DA226F597B00ACC44F /* Draw.cpp */,
+				5D2914DB226F597B00ACC44F /* Draw.hpp */,
 			);
 			path = Lottogenerator;
 			sourceTree = "<group>";
@@ -118,7 +130,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2914C8226F33F200ACC44F /* main.cpp in Sources */,
+				5D2914DC226F597B00ACC44F /* Draw.cpp in Sources */,
+				5D2914D9226F584E00ACC44F /* random.cpp in Sources */,
+				5D2914D6226F35B000ACC44F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

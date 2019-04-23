@@ -1,15 +1,42 @@
-//
-//  main.cpp
-//  Lottogenerator
-//
-//  Created by Simon Prinz on 23.04.19.
-//  Copyright © 2019 Simon Peinz. All rights reserved.
-//
+/*
+ * Project:      Lottogenerator
+ * File:         main.cpp
+ *
+ * Author:       Simon Prinz
+ * Copyright:    © 2019 Simon Prinz. All rights reserved
+ *
+ * Version:      1.0 (23.04.2019)
+ */
 
-#include <iostream>
+// include header file
+#include "main.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+/**
+ * Main method.
+ *
+ * @return status code of the program
+ */
+int main() {
+    
+#pragma region Test
+    Draw d;
+    d.generateRandom();
+    for (int i = 0; i < d.length(); i++) {
+        std::cout << d.getNumber(i) << "\t";
+    }
+    std::cout << d.getSuperNumber();
+#pragma endregion /* Test */
+    
+    //pause();
+    
+    // tell the calling process, everything's fine
+    return EXIT_SUCCESS;
+}
+
+void pause() {
+#ifdef _WIN32_
+    system("pause");
+#else
+    system("read -n 1 -s -p \"Press any key to continue...\"");
+#endif
 }
