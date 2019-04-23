@@ -34,9 +34,6 @@ int main() {
 }
 
 void pause() {
-#ifdef _WIN32_
-    system("pause");
-#else
-    system("read -n 1 -s -p \"Press any key to continue...\"");
-#endif
+    std::cout << "Press enter to continue...";
+    getchar();
 }
