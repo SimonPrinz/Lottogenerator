@@ -10,35 +10,35 @@
 
 #include "Generator.hpp"
 
-namespace tools = me::simonprinz::tools;
+namespace t = me::simonprinz::tools;
 
 void Generator::printConfiguration() const
 {
-    tools::println("=== Derzeitige Konfiguration ===");
-    tools::print(tools::str(this->gamesPerDay));
-    tools::print(" Spiel");
-    tools::print(this->gamesPerDay != 1 ? "e" : "");
-    tools::println(" pro Tag");
-    tools::print("am ");
+    t::println("=== Derzeitige Konfiguration ===");
+    t::print(t::str(this->gamesPerDay));
+    t::print(" Spiel");
+    t::print(this->gamesPerDay != 1 ? "e" : "");
+    t::println(" pro Tag");
+    t::print("am ");
     switch (this->playDays)
     {
         case Days::Wednesday:
-            tools::print("Mittwoch ");
+            t::print("Mittwoch ");
             break;
         case Days::Saturday:
-            tools::print("Samstag ");
+            t::print("Samstag ");
             break;
         case Days::Both:
-            tools::println("Mittwoch und Samstag");
+            t::println("Mittwoch und Samstag");
             break;
     }
-    tools::print("für ");
-    tools::print(tools::str(this->playWeeks));
-    tools::print(" Woche");
-    tools::println(this->playWeeks != 1 ? "n" : "");
-    tools::print(" => ");
-    tools::print(tools::str(this->calculatePrice()));
-    tools::println(" €");
+    t::print("für ");
+    t::print(t::str(this->playWeeks));
+    t::print(" Woche");
+    t::println(this->playWeeks != 1 ? "n" : "");
+    t::print(" => ");
+    t::print(t::str(this->calculatePrice()));
+    t::println(" €");
 }
 
 int Generator::getTicketAmount() const

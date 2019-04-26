@@ -75,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				5D2914D4226F35B000ACC44F /* main.cpp */,
+				5DAD09CE226F91CA00D1E93B /* main.hpp */,
 				5D2914D7226F584E00ACC44F /* random.cpp */,
 				5D2914D8226F584E00ACC44F /* random.hpp */,
 				5D2914DA226F597B00ACC44F /* Draw.cpp */,
@@ -83,7 +84,6 @@
 				5DAD09C9226F85F700D1E93B /* Generator.hpp */,
 				5DAD09CB226F86D900D1E93B /* tools.cpp */,
 				5DAD09CC226F86D900D1E93B /* tools.hpp */,
-				5DAD09CE226F91CA00D1E93B /* main.hpp */,
 			);
 			path = Lottogenerator;
 			sourceTree = "<group>";

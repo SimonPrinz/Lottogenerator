@@ -5,7 +5,7 @@
  * Author:       Simon Prinz
  * Copyright:    © 2019 Simon Prinz. All rights reserved
  *
- * Version:      1.0 (23.04.2019)
+ * Version:      1.1 (26.04.2019)
  */
 
 #include "main.hpp"
@@ -24,31 +24,50 @@ int main()
     bool shouldExit = false;
     while (!shouldExit)
     {
-        tools::clear();
-        tools::println("Lottogenerator v1.0");
-        tools::println();
+        t::clear();
+        t::println("Lottogenerator v1.0");
+        t::println();
+        // printConfiguration writes everything currently
+        // configured in the Generator to the screen
         gen.printConfiguration();
-        tools::println();
-        tools::println("=== Optionen ===");
-        tools::println("spiele = <int>");
-        tools::println("wochen = <int>");
-        tools::println("tage = <Mittwoch=1mi|Samstag=1sa|Beide=2>");
-        tools::println();
-        tools::println("generieren - lottoscheine erstellen");
-        tools::println("beenden - programm verlassen");
-        tools::println();
-        tools::print("Eingabe: ");
-        std::string line = tools::readLine();
-        line = tools::tolower(line);
+        t::println();
+        t::println("=== Optionen ===");
+        t::println("spiele = <int:1-12>");
+        t::println("wochen = <int:1-5>");
+        t::println("tage = <Mittwoch=1mi|Samstag=1sa|Beide=2>");
+        t::println();
+        t::println("generieren - lottoscheine erstellen");
+        t::println("beenden - programm verlassen");
+        t::println();
+        
+        // input of the user
+        t::print("Eingabe: ");
+        // waiting for the user to enter something and press enter
+        std::string line = t::readLine();
+        // converting the input to all lowercase for parsing
+        line = t::tolower(line);
+        
+        std::string error = "";
+        // if the users wants to exit, we set shouldExit to true
+        // this will result in the termination of the program in the next loop
         if (line == "beenden" || line == "exit")
             shouldExit = true;
+        // if the user wants to generate his tickets
+        // we call the printTickets method with our current generator configuration
         else if (line == "generieren" || line == "gen")
             generateAndPrintTickets(gen);
-        else if (!parse(gen, line))
+        // if none of the above could be applied, we try to parse the input
+        // and write an error in the case the input was not valid
+        else if (!parse(gen, line, error))
         {
-            tools::println();
-            tools::println("ERROR: Die Eingabe konnte nicht erkannt werden.");
-            tools::pause("Drücken Sie enter zum fortfahren");
+            t::println();
+            t::print("ERROR: ");
+            // error is a custom error provided by the parse method
+            if (error != "")
+                t::println(error);
+            else
+                t::println("Die Eingabe konnte nicht erkannt werden.");
+            t::pause("Drücken Sie enter zum fortfahren");
         }
     }
     
@@ -56,15 +75,24 @@ int main()
     return EXIT_SUCCESS;
 }
 
-bool parse(Generator &gen, std::string line)
+bool parse(Generator &gen, std::string line, std::string &error)
 {
     try
     {
+        // try to parse the "spiele = <int>" command
         std::regex regex("spiele\\s*=\\s*(\\d+)");
         std::smatch match;
+        // if a match is found apply it
         if (std::regex_search(line, match, regex) && match.size() > 1)
         {
-            gen.setGamesPerDay(std::stoi(match.str(1)));
+            int games = std::stoi(match.str(1));
+            // checking the int if it's valid
+            if (games < 1 || games > 12) {
+                error = "Spiele muss zwischen 1 und 12 (inklusive) liegen";
+                return false;
+            }
+            // set the games per day
+            gen.setGamesPerDay(games);
             return true;
         }
     }
@@ -72,11 +100,20 @@ bool parse(Generator &gen, std::string line)
     
     try
     {
+        // try to parse the "wochen = <int>" command
         std::regex regex("wochen\\s*=\\s*(\\d+)");
         std::smatch match;
+        // if a match is found apply it
         if (std::regex_search(line, match, regex) && match.size() > 1)
         {
-            gen.setWeeks(std::stoi(match.str(1)));
+            int weeks = std::stoi(match.str(1));
+            // checking if the int is valid
+            if (weeks < 1 || weeks > 5) {
+                error = "Wochen muss zwischen 1 und 5 (inklusive) liegen";
+                return false;
+            }
+            // set the weeks
+            gen.setWeeks(weeks);
             return true;
         }
     }
@@ -84,11 +121,14 @@ bool parse(Generator &gen, std::string line)
     
     try
     {
+        // parsing the "tage = <str>" command
         std::regex regex("tage\\s*=\\s*(1mi|1sa|2)");
         std::smatch match;
+        // if a match is found, apply it
         if (std::regex_search(line, match, regex) && match.size() > 1)
         {
             std::string val = match.str(1);
+            // going through multiple if cases to set the enum value
             if (val == "1mi")
             {
                     gen.setDays(Days::Wednesday);
@@ -108,70 +148,82 @@ bool parse(Generator &gen, std::string line)
     }
     catch (std::regex_error err) {}
     
+    // no command could be found
     return false;
 }
 
 void generateAndPrintTickets(Generator gen)
 {
+    // get the total ticket amount to be generated
     int count = gen.getTicketAmount();
+    // should the column header be displayed
     bool displayHeader = true;
+    Draw draw;
+    // loop as many times as there are tickets to generate
     for (int i = 0; i < count; i++)
     {
+        // show the table header
         if (displayHeader)
         {
-            tools::clear();
+            t::clear();
+            // display for next row
             displayHeader = false;
-            tools::print("Schein Nr");
-            tools::printtab();
-            tools::print("|");
-            tools::printtab();
-            tools::print("1");
-            tools::printtab();
-            tools::print("2");
-            tools::printtab();
-            tools::print("3");
-            tools::printtab();
-            tools::print("4");
-            tools::printtab();
-            tools::print("5");
-            tools::printtab();
-            tools::print("6");
-            tools::printtab();
-            tools::print("|");
-            tools::printtab();
-            tools::print("Super");
-            tools::println();
+            t::print("Schein Nr");
+            t::printtab();
+            t::print("|");
+            t::printtab();
+            t::print("1");
+            t::printtab();
+            t::print("2");
+            t::printtab();
+            t::print("3");
+            t::printtab();
+            t::print("4");
+            t::printtab();
+            t::print("5");
+            t::printtab();
+            t::print("6");
+            t::printtab();
+            t::print("|");
+            t::printtab();
+            t::print("Super");
+            t::println();
         }
-        Draw draw;
+        // generate new numbers for this ticket
         draw.generateRandom();
-        tools::print("Schein ");
-        tools::print(tools::str(i + 1));
-        tools::printtab();
-        tools::print("|");
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(0)));
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(1)));
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(2)));
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(3)));
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(4)));
-        tools::printtab();
-        tools::print(tools::str(draw.getNumber(5)));
-        tools::printtab();
-        tools::print("|");
-        tools::printtab();
-        tools::print(tools::str(draw.getSuperNumber()));
-        tools::println();
+        t::print("Schein ");
+        t::print(t::str(i + 1));
+        t::printtab();
+        t::print("|");
+        t::printtab();
+        t::print(t::str(draw.getNumber(0)));
+        t::printtab();
+        t::print(t::str(draw.getNumber(1)));
+        t::printtab();
+        t::print(t::str(draw.getNumber(2)));
+        t::printtab();
+        t::print(t::str(draw.getNumber(3)));
+        t::printtab();
+        t::print(t::str(draw.getNumber(4)));
+        t::printtab();
+        t::print(t::str(draw.getNumber(5)));
+        t::printtab();
+        t::print("|");
+        t::printtab();
+        t::print(t::str(draw.getSuperNumber()));
+        t::println();
+        
+        // pause every ten rows for better readability
         if ((i + 1) % 10 == 0)
         {
+            // show the header next time
             displayHeader = true;
-            tools::print("Drücken Sie enter für die nächsten ");
-            tools::print(tools::str((count - (i + 1) > 10) ? 10 : count - (i + 1)));
-            tools::pause(" Zeilen");
+            // wait for the user to continue
+            t::print("Drücken Sie enter für die nächsten ");
+            t::print(t::str((count - (i + 1) > 10) ? 10 : count - (i + 1)));
+            t::pause(" Zeilen");
         }
     }
-    tools::pause("Sie können nun erneut neue Zahlen generieren oder Ihre Konfiguration ändern");
+    // hint for what to do next
+    t::pause("Sie können nun erneut neue Zahlen generieren oder Ihre Konfiguration ändern");
 }
